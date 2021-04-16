@@ -1,0 +1,40 @@
+class GFG
+{
+    static int lis( int arr[], int n )
+    {
+        int result = 0;
+        int[] lis = new int[n];
+
+        for (int i = 0; i < n; i++ )
+            lis[i] = 1;
+
+        for (int i = 1; i < n; i++ )
+            for (int j = 0; j < i; j++ )
+                if ( arr[i] > arr[j] &&
+                        lis[i] < lis[j] + 1)
+                    lis[i] = lis[j] + 1;
+
+        for (int i = 0; i < n; i++ )
+            if (result < lis[i])
+                result = lis[i];
+
+        return result;
+    }
+
+    static int Azatslineyouneedtostand(int arr[],
+                                        int n)
+    {
+        int len = lis(arr, n);
+
+        return (n - len);
+    }
+
+    public static void main (String[] args)
+    {
+        int arr[] = {30, 40, 2, 5, 1,
+                7, 45, 50, 8};
+        int n = arr.length;
+        System.out.println("Azat's line you need to stand = " +
+                Azatslineyouneedtostand(arr, n));
+    }
+}
